@@ -1,0 +1,4 @@
+your_package/Pose2D target
+bool wait_for_success
+---
+bool success

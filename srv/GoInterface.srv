@@ -1,0 +1,4 @@
+string method
+bool idle
+---
+bool current_idle_status
