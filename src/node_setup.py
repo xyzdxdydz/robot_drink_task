@@ -45,12 +45,7 @@ class RobotSkillSetup(object):
     
     def talk(self, req):
         print("my robot is talking, wow!")
-        # document = '''
-        #         สวัสดีงับ ผมเป็นturtlebotที่โคตรฉลาด
-        #         วันนี้ คุณอยากดื่มอะไรเป็นพิเศษมั้ย งับ 
-        #         ถ้านึกไม่ออก ก็แดกส้นตีนแทนได้นะงับ งุงิ
-        #     '''
-        document = "ดื่มไร"
+        document = "สวัสดีครับ วันนี้คุณจะดื่มอะไรดีครับ"
         
         self.utils.speak("asking", document)
 

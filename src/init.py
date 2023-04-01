@@ -11,29 +11,6 @@ from utils import *
 import time
 
 NODE_NAME = 'drink_robot'
-
-class DoSth(smach.State):
-    def __init__(self, outcomes=['success', 'fail']):
-        super().__init__(outcomes)
-        self.dosth_ser = rospy.ServiceProxy('robot/do_sth', Empty)
-    
-    def execute(self, ud):
-        rospy.loginfo("Executing state DoSth")
-        self.dosth_ser()
-        return 'success'
-
-class GoToPosition(smach.State):
-    def __init__(self, outcomes=['success', 'fail']):
-        super().__init__(outcomes)
-        self.gotopos = rospy.ServiceProxy('robot/go_to_position', GoToPositionResponse)
-    
-    def execute(self, ud):
-        rospy.loginfo("Executing state GoToPosition")
-        req = GoToPositionResponse()
-        req.position_name = 'home'
-        self.gotopos(req)
-        return 'success' 
-    
 class Idle(smach.State):
     def __init__(self, outcomes=['complete', 'nothing']):
         super().__init__(outcomes)
@@ -103,7 +80,7 @@ class Listening(smach.State):
         if listen_status.result: 
             self.utils.speak(
                 "ack",
-                'ขี้เกียจค่ะ แต่จะพยายามไป'
+                'ได้ข้า แต่ช้าดแบตบ้างนะ คิคิ'
             )
             return 'complete'
         
@@ -136,7 +113,7 @@ class TellHost(smach.State):
         if drinkName.result:
             self.utils.speak(
                 "tell_host",
-                f'เขาจะดื่ม {drinkName.message}'
+                f'เขาจะดื่ม {drinkName.message} ครับ'
             )
             self.req_drink("forget")
             
